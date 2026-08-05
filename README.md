@@ -53,11 +53,12 @@ python3 main.py
 
 ## Future Improvements
 
-- Borrow books
 - Return books
-- Exception handling
 - Save books to a file
-- Object-Oriented Programming
+- Support multiple copies of the same book
+- Add member management
+- Use Object-Oriented Programming
+- Store data in a database
 
 ---
 
