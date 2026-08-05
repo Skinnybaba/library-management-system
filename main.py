@@ -29,14 +29,16 @@ def main():
         elif choice == "2":
             view_books()
         elif choice == "3":
-            search_book()
+            borrow_book()
         elif choice == "4":
-            remove_book()
+            search_book()
         elif choice == "5":
+            remove_book()
+        elif choice == "6":
             exit_program()
             break
         else:
-            print("Invalid option. Please choose a number between 1 and 5.")
+            print("Invalid option. Please choose a number between 1 and 6.")
 
 def display_menu():
     print ("""
@@ -45,17 +47,45 @@ Library Management System
 ==========================
 1. Add Book
 2. View Books
-3. Search Book
-4. Remove Book
-5. Exit
+3. Borrow Book
+4. Search Book
+5. Remove Book
+6. Exit
 """)
     return
     
 def add_book():
-    title = input("Enter the book title: ").strip()
-    author = input("Enter the book author: ").strip()
-    year = int(input("Enter the publication year: "))
+    # author = input("Enter the book author: ").strip()
+    # year = int(input("Enter the publication year: "))
+    while True:
+            title = input("Enter the book title: ").strip()
 
+            if title == "":
+                print("Title cannot be empty. Please enter a valid title.")
+            else:
+                break
+
+    while True:
+            author = input("Enter the book author: ").strip()
+
+            if author == "":
+                print("Author cannot be empty. Please enter a valid author.")
+            else:
+                break
+    
+    while True:
+            try:
+                year = int(input("Enter the publication year: "))
+
+                if year < 0:
+                    print("Year cannot be negative. Please enter a valid year.")
+                    continue
+                
+                break
+
+            except ValueError:
+                print("Invalid input. Please enter a valid year.")
+    
     book = {
         "title": title,
         "author": author,
@@ -102,12 +132,25 @@ def search_book():
             return
     print(f"Book '{title}' not found in the library.")
 
+def borrow_book():
+    while True:
+        title = input("Enter the book title to borrow: ").strip().lower()
+        for book in library:
+            if book["title"].strip().lower() == title:
+                if book["available"]:
+                    book["available"] = False
+                    print(f"You have successfully borrowed '{book['title']}'.")
+                else:
+                    print(f"Sorry, '{book['title']}' is currently not available.")
+                return
+        print(f"Book '{title}' not found in the library. Please try again.")
+
 def remove_book():
     title = input("Enter the book title to remove: ").strip().lower()
     for index, book in enumerate(library):
         if book["title"].strip().lower() == title:
             del library[index]
-            print(f"Book '{title}' removed successfully!")
+            print(f"Book '{book['title']}' removed successfully!")
             return
     print(f"Book '{title}' not found in the library.")
 
