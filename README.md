@@ -7,8 +7,10 @@ A console-based Library Management System built with Python.
 - Add a new book
 - View all books
 - Search for a book
+- Borrow a book
 - Remove a book
 - Check book availability
+- Validate user input
 
 ## Technologies Used
 
@@ -26,6 +28,8 @@ A console-based Library Management System built with Python.
 - Dictionaries
 - User Input
 - Program Flow
+- Exception Handling
+- Input Validation
 
 ## How to Run
 
